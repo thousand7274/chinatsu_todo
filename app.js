@@ -51,8 +51,14 @@ function createDOM(value){
   // console.log(button);
   // ボタンを出力リストの後ろにつく
   list.appendChild(button);
-  button.addEventListener('click', function(){
-    this.parentNode.remove();//要素を削除
+  button.addEventListener('click', remove)
+  // 親要素ulのid=listに子要素として追加
+  document.getElementById('list').appendChild(list);
+}
+
+// 削除ボタン関数化
+function remove(){
+  this.parentNode.remove();//要素を削除
     // console.log(this.parentNode.textContent)
     //ストレージ内のデータを探すのはindexOf一致すれば削除できる
     // 配列の中でどこにあるか探すindexOf
@@ -68,10 +74,6 @@ function createDOM(value){
   // console.log(data)
   // データを保存
   dataUpdated();
-
-  })
-  // 親要素ulのid=listに子要素として追加
-  document.getElementById('list').appendChild(list);
 }
 
 function dataUpdated(){
