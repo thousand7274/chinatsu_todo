@@ -10,7 +10,7 @@ let data = [];//もしローカルストレージにデータがなかったら�
 // ２回目に読み込むとき
 // ローカルストレージにもしデータがあればからのところに上書きする
 if (localStorage.getItem('task')){
-  
+
     data = JSON.parse(localStorage.getItem('task'));
 
 }
@@ -35,7 +35,6 @@ document.getElementById('add')
   }
 );
 
-
 for (const value of data) {
   createDOM(value);
 }
@@ -51,7 +50,7 @@ function createDOM(value){
   // console.log(button);
   // ボタンを出力リストの後ろにつく
   list.appendChild(button);
-  button.addEventListener('click', remove)
+  button.addEventListener('click', remove);
   // 親要素ulのid=listに子要素として追加
   document.getElementById('list').appendChild(list);
 }
@@ -71,6 +70,7 @@ function remove(){
     data.splice(data.indexOf(this.parentNode.textContent.slice( 0,-2)), 1);
     // Element.slice(0,-2)「削除」の文字が出てしまうからこれで消す-2の部分は文字で値が変わる
     // 最後から二文字目ってことマイナスしなかったら前からマイナスしたら後ろから
+    // 削除ボタンをアイコンにするならsliceは要らない
   // console.log(data)
   // データを保存
   dataUpdated();
