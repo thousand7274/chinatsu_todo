@@ -1,5 +1,7 @@
 
 // 上から読まれます！！！
+// 長いなぁ、でも何回も使うなぁと思うものは少しずつ関数にして保存していく
+// そしたら短くなるし間違えにくくなる
 
 // console.log(window.localStorage);
 
@@ -20,11 +22,16 @@ document.getElementById('add')
 .addEventListener('click',
 
   function(){
-
-    data.push(document.getElementById('task').value);
-    createDOM(document.getElementById('task').value);
-    localStorage.setItem('task', JSON.stringify(data));
-    document.getElementById('task').value = "";
+    // 長いので一つにまとめる。taskを代入
+    const task = document.getElementById('task')
+    // タスクの値を配列dataに追加
+    data.push(task.value);
+    // タスクを追加
+    createDOM(task.value);
+    // dataをローカルストレージに保存
+    dataUpdated();
+    // タスクのvalueを初期化
+    task.value = "";
   }
 );
 
@@ -60,10 +67,15 @@ function createDOM(value){
     // 最後から二文字目ってことマイナスしなかったら前からマイナスしたら後ろから
   // console.log(data)
   // データを保存
-  localStorage.setItem('task', JSON.stringify(data));
+  dataUpdated();
 
   })
   // 親要素ulのid=listに子要素として追加
   document.getElementById('list').appendChild(list);
+}
+
+function dataUpdated(){
+  // ローカルストレージへ保存の関数
+  localStorage.setItem('task', JSON.stringify(data));
 
 }
